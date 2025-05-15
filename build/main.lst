@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccAOysiO.s 			page 1
+ARM GAS  /tmp/cciY3eq7.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
   31:Core/Src/main.c **** 
   32:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
   33:Core/Src/main.c **** /* USER CODE BEGIN PD */
-ARM GAS  /tmp/ccAOysiO.s 			page 2
+ARM GAS  /tmp/cciY3eq7.s 			page 2
 
 
   34:Core/Src/main.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
   88:Core/Src/main.c ****   /* USER CODE END Init */
   89:Core/Src/main.c **** 
   90:Core/Src/main.c ****   /* Configure the system clock */
-ARM GAS  /tmp/ccAOysiO.s 			page 3
+ARM GAS  /tmp/cciY3eq7.s 			page 3
 
 
   91:Core/Src/main.c ****   SystemClock_Config();
@@ -166,7 +166,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  133:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t*)msg2, strlen(msg2), HAL_MAX_DELAY);
  134:Core/Src/main.c ****     HAL_ADC_Stop(&hadc1);
  135:Core/Src/main.c ****     
- 136:Core/Src/main.c ****     HAL_Delay(500);
+ 136:Core/Src/main.c ****     HAL_Delay(1000);
  137:Core/Src/main.c **** 
  138:Core/Src/main.c ****   }
  139:Core/Src/main.c ****   /* USER CODE END 3 */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  145:Core/Src/main.c ****   */
  146:Core/Src/main.c **** void SystemClock_Config(void)
  147:Core/Src/main.c **** {
-ARM GAS  /tmp/ccAOysiO.s 			page 4
+ARM GAS  /tmp/cciY3eq7.s 			page 4
 
 
  148:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  202:Core/Src/main.c ****   /* USER CODE BEGIN ADC1_Init 1 */
  203:Core/Src/main.c **** 
  204:Core/Src/main.c ****   /* USER CODE END ADC1_Init 1 */
-ARM GAS  /tmp/ccAOysiO.s 			page 5
+ARM GAS  /tmp/cciY3eq7.s 			page 5
 
 
  205:Core/Src/main.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  259:Core/Src/main.c ****   huart1.Instance = USART1;
  260:Core/Src/main.c ****   huart1.Init.BaudRate = 115200;
  261:Core/Src/main.c ****   huart1.Init.WordLength = UART_WORDLENGTH_8B;
-ARM GAS  /tmp/ccAOysiO.s 			page 6
+ARM GAS  /tmp/cciY3eq7.s 			page 6
 
 
  262:Core/Src/main.c ****   huart1.Init.StopBits = UART_STOPBITS_1;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
   52              		.loc 1 289 3 view .LVU8
   53              		.loc 1 289 3 view .LVU9
   54 0016 9A69     		ldr	r2, [r3, #24]
-ARM GAS  /tmp/ccAOysiO.s 			page 7
+ARM GAS  /tmp/cciY3eq7.s 			page 7
 
 
   55 0018 42F00402 		orr	r2, r2, #4
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  307:Core/Src/main.c ****   __disable_irq();
   94              		.loc 1 307 3 view .LVU15
   95              	.LBB6:
-ARM GAS  /tmp/ccAOysiO.s 			page 8
+ARM GAS  /tmp/cciY3eq7.s 			page 8
 
 
   96              	.LBI6:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
   53:Drivers/CMSIS/Device/ST/STM32F1xx/Include/cmsis_gcc.h **** /**
   54:Drivers/CMSIS/Device/ST/STM32F1xx/Include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
   55:Drivers/CMSIS/Device/ST/STM32F1xx/Include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
-ARM GAS  /tmp/ccAOysiO.s 			page 9
+ARM GAS  /tmp/cciY3eq7.s 			page 9
 
 
   56:Drivers/CMSIS/Device/ST/STM32F1xx/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  133              		.cfi_offset 14, -4
  134 0002 85B0     		sub	sp, sp, #20
  135              	.LCFI3:
-ARM GAS  /tmp/ccAOysiO.s 			page 10
+ARM GAS  /tmp/cciY3eq7.s 			page 10
 
 
  136              		.cfi_def_cfa_offset 24
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  172              	.LVL0:
  215:Core/Src/main.c ****   {
  173              		.loc 1 215 6 view .LVU40
-ARM GAS  /tmp/ccAOysiO.s 			page 11
+ARM GAS  /tmp/cciY3eq7.s 			page 11
 
 
  174 002c A8B9     		cbnz	r0, .L12
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  211 0054 05B0     		add	sp, sp, #20
  212              	.LCFI4:
  213              		.cfi_remember_state
-ARM GAS  /tmp/ccAOysiO.s 			page 12
+ARM GAS  /tmp/cciY3eq7.s 			page 12
 
 
  214              		.cfi_def_cfa_offset 4
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  260:Core/Src/main.c ****   huart1.Init.WordLength = UART_WORDLENGTH_8B;
  263              		.loc 1 260 24 is_stmt 0 view .LVU65
  264 0008 4FF4E133 		mov	r3, #115200
-ARM GAS  /tmp/ccAOysiO.s 			page 13
+ARM GAS  /tmp/cciY3eq7.s 			page 13
 
 
  265 000c 4360     		str	r3, [r0, #4]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  302 0030 00380140 		.word	1073821696
  303              		.cfi_endproc
  304              	.LFE66:
-ARM GAS  /tmp/ccAOysiO.s 			page 14
+ARM GAS  /tmp/cciY3eq7.s 			page 14
 
 
  306              		.section	.text.SystemClock_Config,"ax",%progbits
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  156:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
  352              		.loc 1 156 3 is_stmt 1 view .LVU92
  156:Core/Src/main.c ****   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
-ARM GAS  /tmp/ccAOysiO.s 			page 15
+ARM GAS  /tmp/cciY3eq7.s 			page 15
 
 
  353              		.loc 1 156 30 is_stmt 0 view .LVU93
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  389 004e 0793     		str	r3, [sp, #28]
  173:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
  390              		.loc 1 173 3 is_stmt 1 view .LVU112
-ARM GAS  /tmp/ccAOysiO.s 			page 16
+ARM GAS  /tmp/cciY3eq7.s 			page 16
 
 
  173:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  430 0078 FFF7FEFF 		bl	Error_Handler
  431              	.LVL12:
  432              	.L29:
-ARM GAS  /tmp/ccAOysiO.s 			page 17
+ARM GAS  /tmp/cciY3eq7.s 			page 17
 
 
  178:Core/Src/main.c ****   }
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  478              	.LVL17:
   99:Core/Src/main.c ****   MX_USART1_UART_Init();
  479              		.loc 1 99 3 view .LVU134
-ARM GAS  /tmp/ccAOysiO.s 			page 18
+ARM GAS  /tmp/cciY3eq7.s 			page 18
 
 
  480 000e FFF7FEFF 		bl	MX_ADC1_Init
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  520              		.loc 1 119 10 discriminator 1 view .LVU148
  521 0044 82B2     		uxth	r2, r0
  522 0046 234B     		ldr	r3, .L34+8
-ARM GAS  /tmp/ccAOysiO.s 			page 19
+ARM GAS  /tmp/cciY3eq7.s 			page 19
 
 
  523 0048 1A80     		strh	r2, [r3]	@ movhi
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  564 0086 FFF7FEFF 		bl	HAL_ADC_Start
  565              	.LVL29:
  130:Core/Src/main.c ****     adc2 = HAL_ADC_GetValue(&hadc1);
-ARM GAS  /tmp/ccAOysiO.s 			page 20
+ARM GAS  /tmp/cciY3eq7.s 			page 20
 
 
  566              		.loc 1 130 5 discriminator 1 view .LVU162
@@ -1187,7 +1187,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  601              	.LVL35:
  136:Core/Src/main.c **** 
  602              		.loc 1 136 5 discriminator 1 view .LVU171
- 603 00c2 4FF4FA70 		mov	r0, #500
+ 603 00c2 4FF47A70 		mov	r0, #1000
  604 00c6 FFF7FEFF 		bl	HAL_Delay
  605              	.LVL36:
  606              	.LBE8:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  610              		.align	2
  611              	.L34:
  612 00cc 00000000 		.word	.LANCHOR2
-ARM GAS  /tmp/ccAOysiO.s 			page 21
+ARM GAS  /tmp/cciY3eq7.s 			page 21
 
 
  613 00d0 00000000 		.word	.LANCHOR0
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  666              		.section	.bss.msg2,"aw",%nobits
  667              		.align	2
  668              		.set	.LANCHOR6,. + 0
-ARM GAS  /tmp/ccAOysiO.s 			page 22
+ARM GAS  /tmp/cciY3eq7.s 			page 22
 
 
  671              	msg2:
@@ -1287,42 +1287,42 @@ ARM GAS  /tmp/ccAOysiO.s 			page 1
  690              		.file 11 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
  691              		.file 12 "<built-in>"
  692              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
-ARM GAS  /tmp/ccAOysiO.s 			page 23
+ARM GAS  /tmp/cciY3eq7.s 			page 23
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccAOysiO.s:16     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccAOysiO.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccAOysiO.s:74     .text.MX_GPIO_Init:000000000000002c $d
-     /tmp/ccAOysiO.s:79     .text.Error_Handler:0000000000000000 $t
-     /tmp/ccAOysiO.s:86     .text.Error_Handler:0000000000000000 Error_Handler
-     /tmp/ccAOysiO.s:118    .text.MX_ADC1_Init:0000000000000000 $t
-     /tmp/ccAOysiO.s:124    .text.MX_ADC1_Init:0000000000000000 MX_ADC1_Init
-     /tmp/ccAOysiO.s:234    .text.MX_ADC1_Init:0000000000000068 $d
-     /tmp/ccAOysiO.s:240    .text.MX_USART1_UART_Init:0000000000000000 $t
-     /tmp/ccAOysiO.s:246    .text.MX_USART1_UART_Init:0000000000000000 MX_USART1_UART_Init
-     /tmp/ccAOysiO.s:301    .text.MX_USART1_UART_Init:000000000000002c $d
-     /tmp/ccAOysiO.s:307    .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccAOysiO.s:314    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccAOysiO.s:444    .rodata.main.str1.4:0000000000000000 $d
-     /tmp/ccAOysiO.s:451    .text.main:0000000000000000 $t
-     /tmp/ccAOysiO.s:458    .text.main:0000000000000000 main
-     /tmp/ccAOysiO.s:612    .text.main:00000000000000cc $d
-     /tmp/ccAOysiO.s:678    .bss.sConfigADC:0000000000000000 sConfigADC
-     /tmp/ccAOysiO.s:671    .bss.msg2:0000000000000000 msg2
-     /tmp/ccAOysiO.s:664    .bss.msg:0000000000000000 msg
-     /tmp/ccAOysiO.s:643    .bss.adc2:0000000000000000 adc2
-     /tmp/ccAOysiO.s:636    .bss.adc1:0000000000000000 adc1
-     /tmp/ccAOysiO.s:657    .bss.huart1:0000000000000000 huart1
-     /tmp/ccAOysiO.s:650    .bss.hadc1:0000000000000000 hadc1
-     /tmp/ccAOysiO.s:632    .bss.adc1:0000000000000000 $d
-     /tmp/ccAOysiO.s:639    .bss.adc2:0000000000000000 $d
-     /tmp/ccAOysiO.s:646    .bss.hadc1:0000000000000000 $d
-     /tmp/ccAOysiO.s:653    .bss.huart1:0000000000000000 $d
-     /tmp/ccAOysiO.s:660    .bss.msg:0000000000000000 $d
-     /tmp/ccAOysiO.s:667    .bss.msg2:0000000000000000 $d
-     /tmp/ccAOysiO.s:674    .bss.sConfigADC:0000000000000000 $d
+     /tmp/cciY3eq7.s:16     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/cciY3eq7.s:23     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/cciY3eq7.s:74     .text.MX_GPIO_Init:000000000000002c $d
+     /tmp/cciY3eq7.s:79     .text.Error_Handler:0000000000000000 $t
+     /tmp/cciY3eq7.s:86     .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/cciY3eq7.s:118    .text.MX_ADC1_Init:0000000000000000 $t
+     /tmp/cciY3eq7.s:124    .text.MX_ADC1_Init:0000000000000000 MX_ADC1_Init
+     /tmp/cciY3eq7.s:234    .text.MX_ADC1_Init:0000000000000068 $d
+     /tmp/cciY3eq7.s:240    .text.MX_USART1_UART_Init:0000000000000000 $t
+     /tmp/cciY3eq7.s:246    .text.MX_USART1_UART_Init:0000000000000000 MX_USART1_UART_Init
+     /tmp/cciY3eq7.s:301    .text.MX_USART1_UART_Init:000000000000002c $d
+     /tmp/cciY3eq7.s:307    .text.SystemClock_Config:0000000000000000 $t
+     /tmp/cciY3eq7.s:314    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/cciY3eq7.s:444    .rodata.main.str1.4:0000000000000000 $d
+     /tmp/cciY3eq7.s:451    .text.main:0000000000000000 $t
+     /tmp/cciY3eq7.s:458    .text.main:0000000000000000 main
+     /tmp/cciY3eq7.s:612    .text.main:00000000000000cc $d
+     /tmp/cciY3eq7.s:678    .bss.sConfigADC:0000000000000000 sConfigADC
+     /tmp/cciY3eq7.s:671    .bss.msg2:0000000000000000 msg2
+     /tmp/cciY3eq7.s:664    .bss.msg:0000000000000000 msg
+     /tmp/cciY3eq7.s:643    .bss.adc2:0000000000000000 adc2
+     /tmp/cciY3eq7.s:636    .bss.adc1:0000000000000000 adc1
+     /tmp/cciY3eq7.s:657    .bss.huart1:0000000000000000 huart1
+     /tmp/cciY3eq7.s:650    .bss.hadc1:0000000000000000 hadc1
+     /tmp/cciY3eq7.s:632    .bss.adc1:0000000000000000 $d
+     /tmp/cciY3eq7.s:639    .bss.adc2:0000000000000000 $d
+     /tmp/cciY3eq7.s:646    .bss.hadc1:0000000000000000 $d
+     /tmp/cciY3eq7.s:653    .bss.huart1:0000000000000000 $d
+     /tmp/cciY3eq7.s:660    .bss.msg:0000000000000000 $d
+     /tmp/cciY3eq7.s:667    .bss.msg2:0000000000000000 $d
+     /tmp/cciY3eq7.s:674    .bss.sConfigADC:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_ADC_Init

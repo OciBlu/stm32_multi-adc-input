@@ -133,7 +133,7 @@ int main(void)
     HAL_UART_Transmit(&huart1, (uint8_t*)msg2, strlen(msg2), HAL_MAX_DELAY);
     HAL_ADC_Stop(&hadc1);
     
-    HAL_Delay(500);
+    HAL_Delay(1000);
 
   }
   /* USER CODE END 3 */
