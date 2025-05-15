@@ -45,11 +45,6 @@ ADC_HandleTypeDef hadc1;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-uint16_t adc1;
-uint16_t adc2;
-char msg[20];
-char msg2[25];
-ADC_ChannelConfTypeDef sConfigADC;
 
 /* USER CODE END PV */
 
@@ -65,6 +60,12 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+uint16_t adc1;
+uint16_t adc2;
+char msg1[25];
+char msg2[25];
+ADC_ChannelConfTypeDef sConfigADC;
+  
 /* USER CODE END 0 */
 
 /**
@@ -109,31 +110,30 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
     sConfigADC.Channel = ADC_CHANNEL_0;
     sConfigADC.Rank = ADC_REGULAR_RANK_1;
-    sConfigADC.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+    sConfigADC.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
     HAL_ADC_ConfigChannel(&hadc1, &sConfigADC);
     HAL_ADC_Start(&hadc1);
     HAL_ADC_PollForConversion(&hadc1, 100);
     adc1 = HAL_ADC_GetValue(&hadc1);
-    sprintf(msg, "ADC1: %hu ", adc1);
-    HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
+    sprintf(msg1, "ADC2: %hu  " , adc1);
+    HAL_UART_Transmit(&huart1, (uint8_t*)msg1, strlen(msg1), HAL_MAX_DELAY);
     HAL_ADC_Stop(&hadc1);
-    
 
     sConfigADC.Channel = ADC_CHANNEL_1;
     sConfigADC.Rank = ADC_REGULAR_RANK_2;
-    sConfigADC.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+    sConfigADC.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
     HAL_ADC_ConfigChannel(&hadc1, &sConfigADC);
     HAL_ADC_Start(&hadc1);
     HAL_ADC_PollForConversion(&hadc1, 100);
     adc2 = HAL_ADC_GetValue(&hadc1);
-    sprintf(msg2, "ADC2: %hu \r\n", adc2);
+    sprintf(msg2, "ADC2: %hu r\n" , adc2);
     HAL_UART_Transmit(&huart1, (uint8_t*)msg2, strlen(msg2), HAL_MAX_DELAY);
     HAL_ADC_Stop(&hadc1);
-    
+
     HAL_Delay(1000);
+
 
   }
   /* USER CODE END 3 */
@@ -219,9 +219,11 @@ static void MX_ADC1_Init(void)
 
   /** Configure Regular Channel
   */
+
+  /*
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -229,12 +231,16 @@ static void MX_ADC1_Init(void)
 
   /** Configure Regular Channel
   */
+
+  /*
   sConfig.Channel = ADC_CHANNEL_1;
   sConfig.Rank = ADC_REGULAR_RANK_2;
+  sConfig.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
   }
+  */
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
