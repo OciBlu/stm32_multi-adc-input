@@ -45,6 +45,10 @@ ADC_HandleTypeDef hadc1;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
+uint16_t adc1;
+uint16_t adc2;
+char msg[];
+char msg2[20];
 
 /* USER CODE END PV */
 
@@ -104,6 +108,25 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+  
+    HAL_ADC_ConfigChannel(&hadc1, ADC_CHANNEL_0);
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 100);
+    adc1 = HAL_ADC_GetValue(&hadc1);
+    sprintf(msg, "ADC1: %hu ", adc1);
+    HAL_ADC_Stop(&hadc1);
+
+    HAL_ADC_ConfigChannel(&hadc1, ADC_CHANNEL_1);
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 100);
+    adc2 = HAL_ADC_GetValue(&hadc1);
+    sprintf(msg2, "ADC2: %hu ", adc2);
+    HAL_ADC_Stop(&hadc1);
+
+    HAL_UART_Transmit(&huart1, (uint8_t*)msg, starlen(msg), HAL_MAX_DELAY);
+    HAL_UART_Transmit(&huart1, (uint8_t*)msg2, starlen(msg2), HAL_MAX_DELAY);
+    HAL_Delay(500);
+
   }
   /* USER CODE END 3 */
 }
