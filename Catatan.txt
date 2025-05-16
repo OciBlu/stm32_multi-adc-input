@@ -21,3 +21,47 @@ sConfigADC.Channel = ADC_CHANNEL_0;
     HAL_ADC_Stop(&hadc1);
 
     HAL_Delay(1000);
+
+    uint16_t adc1;
+uint16_t adc2;
+char msg1[25];
+char msg2[25];
+ADC_ChannelConfTypeDef sConfigADC;
+
+uint16_t ADC_Convert_Rank1(void)
+{
+  sConfigADC.Channel = ADC_CHANNEL_0;
+  sConfigADC.Rank = ADC_REGULAR_RANK_1;
+  sConfigADC.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfigADC)!= HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  HAL_ADC_Start(&hadc1);
+  HAL_ADC_PollForConversion(&hadc1, 100);
+  adc1 = HAL_ADC_GetValue(&hadc1);
+  sprintf(msg1, "ADC2: %hu  " , adc1);
+  HAL_UART_Transmit(&huart1, (uint8_t*)msg1, strlen(msg1), HAL_MAX_DELAY);
+  HAL_ADC_Stop(&hadc1);
+  return adc1;
+}
+
+uint16_t ADC_Convert_Rank2(void)
+{
+  sConfigADC.Channel = ADC_CHANNEL_1;
+  sConfigADC.Rank = ADC_REGULAR_RANK_2;
+  sConfigADC.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfigADC)!= HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  HAL_ADC_Start(&hadc1);
+  HAL_ADC_PollForConversion(&hadc1, 100);
+  adc2 = HAL_ADC_GetValue(&hadc1);
+  sprintf(msg2, "ADC2: %hu  \r\n" , adc1);
+  HAL_UART_Transmit(&huart1, (uint8_t*)msg2, strlen(msg2), HAL_MAX_DELAY);
+  HAL_ADC_Stop(&hadc1);
+  return adc1;
+}
