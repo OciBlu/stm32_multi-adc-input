@@ -64,11 +64,12 @@ static void MX_ADC1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint16_t adc[2];
+uint16_t adc[3];
 uint16_t adc1;
 uint16_t adc2;
-char msg[25];
+uint16_t adc3;
 
+char msg[25];
 
 int ADCFinis = 0;
 int count = 0;
@@ -113,7 +114,7 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_ADC_Start_DMA(&hadc1, adc, 2);
+  HAL_ADC_Start_DMA(&hadc1, adc, 3);
   
   /* USER CODE END 2 */
 
@@ -125,21 +126,29 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     count++;
-    if(ADCFinis == 1)
-    {
-      //Start data
-      ADCFinis = 0;
-      HAL_ADC_Start_DMA(&hadc1, adc,2);
-      adc1 = adc[0];
-      adc2 = adc[1];
-    }
 
-    sprintf(msg, "ADC1: %hu  \r\t\t" , adc1);
+    //Use IF Function if Use DMA Normal Mode, Commenr if use Circular Mode
+    // if(ADCFinis == 1)
+    // {
+    //   //Start data
+    //   ADCFinis = 0;
+    //   HAL_ADC_Start_DMA(&hadc1, adc,3);
+    // }
+
+    adc1 = adc[0];
+    adc2 = adc[1];
+    adc3 = adc[2];
+
+    sprintf(msg, "ADC1: %hu  " , adc1);
     HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 
-    sprintf(msg, "ADC2: %hu  \r\n" , adc2);
+    sprintf(msg, "ADC2: %hu  " , adc2);
+    HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
+
+    sprintf(msg, "ADC3: %hu  \r\n" , adc3);
     HAL_UART_Transmit(&huart1, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
-    HAL_Delay(1000);
+    
+    HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -212,12 +221,11 @@ static void MX_ADC1_Init(void)
   */
   hadc1.Instance = ADC1;
   hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
-  hadc1.Init.DiscontinuousConvMode = ENABLE;
-  hadc1.Init.NbrOfDiscConversion = 1;
+  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 2;
+  hadc1.Init.NbrOfConversion = 3;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
@@ -227,7 +235,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -237,7 +245,15 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_1;
   sConfig.Rank = ADC_REGULAR_RANK_2;
-  sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = ADC_REGULAR_RANK_3;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
