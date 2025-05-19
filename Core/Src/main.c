@@ -21,6 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "string.h"
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -41,6 +43,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 
 UART_HandleTypeDef huart1;
 
@@ -51,6 +54,7 @@ UART_HandleTypeDef huart1;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
@@ -60,50 +64,19 @@ static void MX_ADC1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+uint16_t adc[2];
 uint16_t adc1;
 uint16_t adc2;
-char msg1[25];
-char msg2[25];
-ADC_ChannelConfTypeDef sConfigADC;
+char msg[25];
 
-uint16_t ADC_Convert_Rank1(void)
+
+int ADCFinis = 0;
+int count = 0;
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-  sConfigADC.Channel = ADC_CHANNEL_0;
-  sConfigADC.Rank = ADC_REGULAR_RANK_1;
-  sConfigADC.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfigADC)!= HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  HAL_ADC_Start(&hadc1);
-  HAL_ADC_PollForConversion(&hadc1, 100);
-  adc1 = HAL_ADC_GetValue(&hadc1);
-  sprintf(msg1, "ADC1: %hu  " , adc1);
-  HAL_UART_Transmit(&huart1, (uint8_t*)msg1, strlen(msg1), HAL_MAX_DELAY);
-  HAL_ADC_Stop(&hadc1);
-  return adc1;
+  ADCFinis = 1;
 }
 
-uint16_t ADC_Convert_Rank2(void)
-{
-  sConfigADC.Channel = ADC_CHANNEL_1;
-  sConfigADC.Rank = ADC_REGULAR_RANK_2;
-  sConfigADC.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfigADC)!= HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  HAL_ADC_Start(&hadc1);
-  HAL_ADC_PollForConversion(&hadc1, 100);
-  adc2 = HAL_ADC_GetValue(&hadc1);
-  sprintf(msg2, "ADC2: %hu  \r\n" , adc2);
-  HAL_UART_Transmit(&huart1, (uint8_t*)msg2, strlen(msg2), HAL_MAX_DELAY);
-  HAL_ADC_Stop(&hadc1);
-  return adc2;
-}
-  
 /* USER CODE END 0 */
 
 /**
@@ -135,10 +108,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_ADC_Start_DMA(&hadc1, adc, 2);
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -148,47 +124,22 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    /*
-    sConfigADC.Channel = ADC_CHANNEL_0;
-    sConfigADC.Rank = ADC_REGULAR_RANK_1;
-    sConfigADC.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
-    //
-    sConfigADC.SingleDiff = ADC_SINGLE_ENDED;
-    sConfigADC.OffsetNumber = ADC_OFFSET_NONE;
-    sConfigADC.Offset = 0;
-    sConfigADC.OffsetSignedSaturation = DISABLE;
-    //
-    HAL_ADC_ConfigChannel(&hadc1, &sConfigADC);
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 100);
-    adc1 = HAL_ADC_GetValue(&hadc1);
-    sprintf(msg1, "ADC2: %hu  " , adc1);
-    HAL_UART_Transmit(&huart1, (uint8_t*)msg1, strlen(msg1), HAL_MAX_DELAY);
-    HAL_ADC_Stop(&hadc1);
+    count++;
+    if(ADCFinis == 1)
+    {
+      //Start data
+      ADCFinis = 0;
+      HAL_ADC_Start_DMA(&hadc1, adc,2);
+      adc1 = adc[0];
+      adc2 = adc[1];
+    }
 
-    sConfigADC.Channel = ADC_CHANNEL_1;
-    sConfigADC.Rank = ADC_REGULAR_RANK_2;
-    sConfigADC.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
-    
-    sConfigADC.SingleDiff = ADC_SINGLE_ENDED;
-    sConfigADC.OffsetNumber = ADC_OFFSET_NONE;
-    sConfigADC.Offset = 0;
-    sConfigADC.OffsetSignedSaturation = DISABLE;
-    
-    HAL_ADC_ConfigChannel(&hadc1, &sConfigADC);
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 100);
-    adc2 = HAL_ADC_GetValue(&hadc1);
-    sprintf(msg2, "ADC2: %hu \r\n" , adc2);
-    HAL_UART_Transmit(&huart1, (uint8_t*)msg2, strlen(msg2), HAL_MAX_DELAY);
-    HAL_ADC_Stop(&hadc1);
+    sprintf(msg, "ADC1: %hu  \r\t\t" , adc1);
+    HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 
+    sprintf(msg, "ADC2: %hu  \r\n" , adc2);
+    HAL_UART_Transmit(&huart1, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
     HAL_Delay(1000);
-    */
-    ADC_Convert_Rank1();
-    ADC_Convert_Rank2();
-    HAL_Delay(1000);
-
   }
   /* USER CODE END 3 */
 }
@@ -274,7 +225,6 @@ static void MX_ADC1_Init(void)
 
   /** Configure Regular Channel
   */
- /*
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
@@ -285,7 +235,6 @@ static void MX_ADC1_Init(void)
 
   /** Configure Regular Channel
   */
- /*
   sConfig.Channel = ADC_CHANNEL_1;
   sConfig.Rank = ADC_REGULAR_RANK_2;
   sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
@@ -293,7 +242,6 @@ static void MX_ADC1_Init(void)
   {
     Error_Handler();
   }
- */
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
@@ -330,6 +278,22 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
 
 }
 

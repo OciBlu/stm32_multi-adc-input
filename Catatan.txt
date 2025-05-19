@@ -22,7 +22,7 @@ sConfigADC.Channel = ADC_CHANNEL_0;
 
     HAL_Delay(1000);
 
-    uint16_t adc1;
+uint16_t adc1;
 uint16_t adc2;
 char msg1[25];
 char msg2[25];
@@ -65,3 +65,4 @@ uint16_t ADC_Convert_Rank2(void)
   HAL_ADC_Stop(&hadc1);
   return adc1;
 }
+
