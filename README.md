@@ -5,12 +5,15 @@ Programing STM32F103C8T6 Multiple ADC Input
 RCC
 - HSE: Crystal/Ceramic Resonator
 - LSE: Disable
+  
 SYS
 - Debug: Serial Wire
 - Timebase Source: SysTick
+  
 UART1
 - Mode: Asynchronous
 - Hardware Flow Control (RS232): Disable
+  
 ADC1 Setting
 - Mode: IN0=chek , IN1=chek, IN2=check
 - Scan Conversion Mode = Enable
@@ -18,6 +21,7 @@ ADC1 Setting
 - Rank Sampling Time = Sama
 - DMA Setting : Add ADC DMA, Mode= Normal/Circular, Increment address= Memory, Data Width= Half Time.
 - NVIC Setting : Global Interrupt = Chek, ADC Interrupt = Chek
+  
 System Core / NVIC Interrupt Table / ADC Global Interrupt
 - Preemtion Priority = 1
 
